@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -104,7 +104,7 @@ const Products = () => {
   };
 
   // fetch data
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await axios.get("http://127.0.0.1:3001/api/products");
       const data = response.data;
@@ -116,12 +116,12 @@ const Products = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  },[dispatch, setProducts]);
 
   useEffect(() => {
     setSearchButtonStatus(false);
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, fetchData]);
 
   return (
     <div style={{ margin: "5% auto 0", width: "80%" }}>

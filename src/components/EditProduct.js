@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button, Col, Dropdown } from "react-bootstrap";
 import ArrowSvg from "../assets/arrow.svg";
 import axios from "axios";
@@ -24,7 +24,7 @@ const EditProduct = () => {
   };
 
   // Fetch a product data by ID
-  const fetchProductById = async () => {
+  const fetchProductById = useCallback(async () => {
     try {
       const response = await axios.get(
         `http://localhost:3001/api/products/${id}`
@@ -35,7 +35,7 @@ const EditProduct = () => {
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
-  };
+  }, [id]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -78,7 +78,7 @@ const EditProduct = () => {
     if (id) {
       fetchProductById();
     }
-  }, [id]);
+  }, [id, fetchProductById]);
 
   return (
     <div style={{ margin: "5% auto 0", width: "80%" }}>
@@ -309,7 +309,7 @@ const EditProduct = () => {
                           "http://127.0.0.1:3001/" +
                           productData.imageUrl[index].path
                         }
-                        alt={`Product Image ${index + 1}`}
+                        alt={`Product Images ${index + 1}`}
                         style={{
                           width: "50px",
                           height: "50px",
