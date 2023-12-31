@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Dropdown } from "react-bootstrap";
 import ArrowSvg from "../assets/arrow.svg";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
     const primaryColor = "#001EB9";
