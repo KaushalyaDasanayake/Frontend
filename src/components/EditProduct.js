@@ -370,7 +370,7 @@ const EditProduct = () => {
                 width: "160px",
               }}
             >
-              Add Product
+              Save Changes
             </Button>
           </Col>
         </form>
